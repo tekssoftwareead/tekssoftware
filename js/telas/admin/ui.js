@@ -104,7 +104,8 @@ export function abrirJanela({ icone, titulo, subtitulo, corpo = "", textoSalvar 
       if (r !== false) fechar();
       else { botaoSalvar.disabled = false; botaoSalvar.textContent = textoSalvar; }
     } catch (err) {
-      console.error(err);
+      // avisos de preenchimento (senha curta etc.) aparecem só na janela; erros do banco vão também para o console
+      if (err && (err.code || err.status)) console.error(err);
       mostrarErro(err && err.message ? err.message : String(err));
       botaoSalvar.disabled = false;
       botaoSalvar.textContent = textoSalvar;
