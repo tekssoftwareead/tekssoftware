@@ -1,0 +1,66 @@
+/* ================= GERAL ================= */
+:root {
+  --fonte: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --vivo: #1ee651;
+  --primaria: #12b34a;
+  --primaria-escura: #047857;
+  --primaria-clara: #e8fbef;
+  --grad: linear-gradient(135deg, #1ee651 0%, #05a06a 100%);
+  --fundo-externo: #a6a9ab;
+  --fundo: #ffffff;
+  --card: #ffffff;
+  --texto: #1e293b;
+  --muda: #475569;
+  --borda: #e2e8f0;
+  --erro: #d64545;
+  --campo: #ffffff;
+  --barra-bg: #ffffff;
+  --barra-texto: #1e293b;
+  --barra-borda: #e2e8f0;
+  --barra-hover: #e8fbef;
+  --marca-bg: transparent;
+  --raio: 20px;
+  --sombra: 0 1px 2px rgba(30,41,59,.05), 0 8px 24px rgba(30,41,59,.07);
+  --sombra-forte: 0 2px 4px rgba(30,41,59,.06), 0 14px 30px rgba(30,230,81,.28);
+}
+/* tema escuro: preto + verde */
+body.escuro {
+  --fundo-externo: #000000;
+  --fundo: #0d1210;
+  --card: #151c18;
+  --campo: #151c18;
+  --texto: #f1f5f9;
+  --muda: #a3b1aa;
+  --borda: #25322b;
+  --primaria: #1ee651;
+  --primaria-escura: #1ee651;
+  --primaria-clara: rgba(30,230,81,.12);
+  --barra-bg: #000000;
+  --barra-texto: #e5e7eb;
+  --barra-borda: #1c2a22;
+  --barra-hover: rgba(255,255,255,.1);
+  --marca-bg: transparent;
+  --sombra: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--fonte); -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font-family: inherit; }
+#login-view[hidden], #home-view[hidden] { display: none; }
+
+/* logo da Teks: para trocar, coloque logoteks.png (ou .jpg/.webp/.svg) na pasta img/ */
+.logo-teks {
+  display: block; aspect-ratio: var(--logo-prop, 6.956);
+  background: var(--logo-url, url("../img/logoteks.png")) center / contain no-repeat;
+}
+
+/* tema escuro: clareia o logo (que é verde escuro) para aparecer no preto, sem fundo branco */
+body.escuro .logo-teks { filter: brightness(1.8); }
+
+/* ================= TROCA DE PÁGINA =================
+   A tela nova aparece com um fade rápido (o JS põe a classe .troca em js/nucleo/rotas.js).
+   Duração: troque .3s abaixo. */
+.troca { animation: troca-pagina .3s cubic-bezier(.2,.7,.3,1) backwards; }
+#app.troca, #view-home.troca { animation-name: troca-pagina-sobe; }
+@keyframes troca-pagina { from { opacity: 0; } }
+@keyframes troca-pagina-sobe { from { opacity: 0; transform: translateY(10px); } }
+@media (prefers-reduced-motion: reduce) { .troca { animation: none; } }

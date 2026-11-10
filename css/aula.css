@@ -1,0 +1,123 @@
+/* ================= TELA DA AULA (do site 1, no visual do site 2) ================= */
+main:has(.player) { max-width: 1280px; }
+
+.player { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 28px; align-items: start; padding-top: 44px; }
+
+.player-modulo { margin-top: 16px; font-size: .88rem; font-weight: 600; color: var(--muda); }
+.player-titulo { margin: 4px 0 18px; font-size: 1.9rem; font-weight: 800; letter-spacing: -.6px; line-height: 1.2; color: var(--texto); }
+
+.player .video { margin: 0 0 16px; }
+.player .video .yt { border-radius: 0; box-shadow: none; }
+.video-vazio { margin: 0; padding: 80px 20px; color: #cbd5e1; }
+
+/* opções abaixo do vídeo: reprodução automática, velocidade, cinema */
+.video-opcoes { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; margin-bottom: 22px; }
+.opcao, .opcao-auto {
+  position: relative; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px;
+  background: var(--campo); border: 1.5px solid var(--borda); border-radius: 999px;
+  color: var(--texto); font-size: .85rem; font-weight: 600; cursor: pointer; transition: .2s;
+}
+.opcao:hover, .opcao-auto:hover { border-color: var(--primaria); color: var(--primaria-escura); }
+.opcao.ativo { background: var(--grad); border-color: transparent; color: #04210f; }
+.opcao svg { width: 18px; height: 18px; }
+.opcao-auto input { position: absolute; opacity: 0; pointer-events: none; }
+.trilho { position: relative; width: 34px; height: 18px; background: rgba(100,116,139,.25); border-radius: 999px; transition: .2s; }
+.trilho::after { content: ""; position: absolute; top: 3px; left: 3px; width: 12px; height: 12px; background: #fff; border-radius: 50%; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: .2s; }
+.opcao-auto input:checked + .trilho { background: var(--primaria); }
+.opcao-auto input:checked + .trilho::after { left: 19px; }
+.opcao-auto input:focus-visible + .trilho { box-shadow: 0 0 0 3px rgba(30,230,81,.35); }
+
+.aula-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 24px; }
+.aula-acoes .material { margin: 0; }
+.player .descricao { margin-bottom: 24px; }
+.player .descricao p { margin-bottom: 12px; }
+
+/* anotação */
+.anotacao { margin: 0 0 24px; background: var(--card); border: 1px solid var(--borda); border-radius: 14px; }
+.anotacao summary { display: flex; justify-content: space-between; padding: 14px 18px; list-style: none; font-weight: 700; cursor: pointer; }
+.anotacao summary::-webkit-details-marker { display: none; }
+.anotacao summary::after { content: "▾"; color: var(--primaria); transition: transform .2s; }
+.anotacao[open] summary::after { transform: rotate(180deg); }
+.anotacao textarea {
+  display: block; width: calc(100% - 36px); min-height: 130px; margin: 0 18px 8px; padding: 12px;
+  background: var(--campo); border: 1.5px solid var(--borda); border-radius: 10px; outline: none; resize: vertical;
+  color: var(--texto); font-size: .95rem; line-height: 1.5;
+}
+.anotacao textarea:focus { border-color: var(--primaria); box-shadow: 0 0 0 4px rgba(30,230,81,.18); }
+.anotacao small { display: block; min-height: 1.2em; padding: 0 18px 12px; color: var(--muda); font-size: .8rem; }
+
+/* coluna da direita */
+.player-lateral {
+  position: sticky; top: 110px; max-height: calc(100vh - 130px); overflow-y: auto; padding: 18px;
+  background: var(--card); border: 1px solid var(--borda); border-radius: var(--raio); box-shadow: var(--sombra);
+}
+#lat-topo { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.anel { position: relative; flex-shrink: 0; width: 58px; height: 58px; }
+.anel svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.anel circle { fill: none; stroke-width: 3.2; }
+.anel-fundo { stroke: rgba(100,116,139,.18); }
+.anel-valor { stroke: var(--primaria); stroke-linecap: round; transition: stroke-dasharray .4s; }
+.anel span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 800; }
+.lat-curso { display: block; color: var(--texto); font-weight: 700; line-height: 1.3; text-decoration: none; }
+.lat-curso:hover { color: var(--primaria-escura); }
+.lat-conta { margin-top: 4px; font-size: .82rem; color: var(--muda); }
+.lat-busca input {
+  width: 100%; height: 40px; margin-bottom: 8px; padding: 0 16px; background: var(--campo); color: var(--texto);
+  border: 1.5px solid var(--borda); border-radius: 999px; outline: none; font-size: .9rem;
+}
+.lat-busca input:focus { border-color: var(--primaria); }
+
+.mod { border-top: 1px solid var(--borda); }
+.mod summary { padding: 14px 0; list-style: none; cursor: pointer; }
+.mod summary::-webkit-details-marker { display: none; }
+.mod-cab { display: flex; align-items: center; gap: 10px; font-size: .92rem; font-weight: 700; color: var(--texto); }
+.mod-cab::after { content: "▾"; color: var(--primaria); transition: transform .2s; }
+.mod[open] .mod-cab::after { transform: rotate(180deg); }
+.mod-titulo { flex: 1; }
+.mod-progresso { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.mod-cont { color: var(--muda); font-size: .78rem; font-weight: 700; }
+.mod-barra { flex: 1; height: 6px; overflow: hidden; background: rgba(100,116,139,.15); border-radius: 999px; }
+.mod-barra div { height: 100%; background: var(--grad); border-radius: 999px; transition: width .4s; }
+.mod-aulas { display: flex; flex-direction: column; gap: 4px; padding-bottom: 12px; }
+
+.aula-linha { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 12px; color: var(--texto); text-decoration: none; transition: .2s; }
+.aula-linha:hover { background: var(--primaria-clara); }
+.aula-linha.atual { background: var(--primaria-clara); box-shadow: inset 3px 0 0 var(--primaria); }
+.aula-num { flex-shrink: 0; width: 22px; text-align: center; font-size: .78rem; font-weight: 700; color: var(--muda); }
+.aula-mini {
+  position: relative; flex-shrink: 0; width: 76px; height: 46px; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: var(--grad); color: #fff; border-radius: 8px;
+}
+.aula-mini img { width: 100%; height: 100%; object-fit: cover; }
+.aula-mini svg { width: 18px; height: 18px; }
+.aula-mini small { position: absolute; right: 3px; bottom: 2px; padding: 0 4px; background: rgba(0,0,0,.75); border-radius: 3px; color: #fff; font-size: .65rem; font-weight: 600; }
+.aula-nome { flex: 1; min-width: 0; font-size: .86rem; font-weight: 600; line-height: 1.3; }
+.aula-linha.atual .aula-nome { color: var(--primaria-escura); }
+.aula-ok {
+  flex-shrink: 0; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--borda); border-radius: 50%; color: transparent; cursor: pointer; transition: .2s;
+}
+.aula-ok:hover { border-color: var(--primaria); }
+.aula-ok svg { width: 13px; height: 13px; pointer-events: none; }
+.aula-linha.feita .aula-ok { background: var(--primaria); border-color: var(--primaria); color: #fff; }
+
+/* computador: o vídeo e a lista de módulos começam na mesma altura */
+@media (min-width: 981px) {
+  .player { row-gap: 0; }
+  .player-principal { display: contents; }
+  .player-principal > * { grid-column: 1; }
+  .player-principal > .voltar, .player-principal > .player-modulo, .player-principal > .player-titulo { grid-column: 1 / -1; }
+  .player-principal > .voltar { justify-self: start; }
+  .player-lateral { grid-column: 2; grid-row: 4 / span 8; align-self: stretch; contain: size; position: static; max-height: none; }
+
+  /* modo cinema: vídeo maior e a lista vai para baixo */
+  main:has(.player.cinema) { max-width: 1500px; }
+  .player.cinema { grid-template-columns: minmax(0, 1fr); }
+  .player.cinema .player-lateral { grid-column: 1; grid-row: auto; align-self: start; contain: none; }
+}
+@media (max-width: 980px) {
+  .player { grid-template-columns: 1fr; padding-top: 28px; }
+  .player-lateral { position: static; max-height: none; }
+  #opc-cinema { display: none; }
+}
+@media (max-width: 640px) { .player-titulo { font-size: 1.45rem; } .video-opcoes { justify-content: flex-start; } }

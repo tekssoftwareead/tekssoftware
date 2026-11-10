@@ -1,0 +1,30 @@
+/* ================= BOTÃO FLUTUANTE DO WHATSAPP ================= */
+.botaoflutuante {
+  position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 60;
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+}
+.botaoflutuante-circulo {
+  width: 60px; height: 60px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  background: linear-gradient(135deg, #1ee651 0%, #05a06a 100%); color: #fff;
+  box-shadow: 0 10px 28px rgba(30,230,81,.45), 0 4px 10px rgba(15,23,42,.18); transition: transform .2s, box-shadow .2s;
+}
+.botaoflutuante-circulo svg { width: 32px; height: 32px; }
+.botaoflutuante:hover .botaoflutuante-circulo { transform: scale(1.08); box-shadow: 0 14px 34px rgba(30,230,81,.6), 0 6px 14px rgba(15,23,42,.22); }
+.botaoflutuante:focus-visible { outline: none; }
+.botaoflutuante:focus-visible .botaoflutuante-circulo { outline: 3px solid rgba(30,230,81,.5); outline-offset: 3px; }
+
+/* "Falar no WhatsApp" aparece ao passar o mouse */
+.botaoflutuante-rotulo {
+  height: 44px; display: flex; align-items: center; padding: 0 18px; border-radius: 999px; white-space: nowrap;
+  background: var(--card); color: var(--texto); border: 1px solid var(--borda); box-shadow: 0 8px 22px rgba(15,23,42,.18);
+  font-weight: 700; font-size: .95rem; opacity: 0; transform: translateX(10px); pointer-events: none; transition: opacity .2s, transform .25s;
+}
+.botaoflutuante:hover .botaoflutuante-rotulo, .botaoflutuante:focus-visible .botaoflutuante-rotulo { opacity: 1; transform: none; }
+
+@media (max-width: 640px) {
+  .botaoflutuante { right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+  .botaoflutuante-circulo { width: 56px; height: 56px; }
+  .botaoflutuante-rotulo { display: none; }
+}
+/* na tela de login não aparece */
+body:has(#home-view[hidden]) .botaoflutuante { display: none; }

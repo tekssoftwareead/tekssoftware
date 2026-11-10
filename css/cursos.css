@@ -1,0 +1,84 @@
+/* ================= LISTA DE CURSOS (do site 1, no visual do site 2) ================= */
+.hero-cursos { padding-bottom: 36px; }
+.hero-cursos h1 { margin-bottom: 10px; }
+.cursos-sub { color: var(--muda); font-size: 1.05rem; font-weight: 500; }
+.hero-cursos .filtros { margin-top: 28px; }
+.hero-cursos + .band { max-width: 1020px; margin: 0 auto; }
+.chip svg { width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; }
+.chip.bloqueado { opacity: .6; }
+
+.lista-topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; color: var(--muda); font-size: .9rem; font-weight: 600; }
+
+.linhas { display: flex; flex-direction: column; gap: 16px; }
+
+.curso-linha {
+  display: flex; align-items: center; gap: 22px; padding: 14px; cursor: pointer;
+  background: var(--card); border: 1px solid var(--borda); border-radius: var(--raio); box-shadow: var(--sombra); transition: .2s;
+}
+.curso-linha:hover { border-color: var(--primaria); box-shadow: var(--sombra-forte); transform: translateY(-2px); }
+
+.curso-capa {
+  flex-shrink: 0; width: 200px; height: 116px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  background: var(--grad); border-radius: 14px; color: #fff; font-size: 2.6rem; font-weight: 800; text-decoration: none;
+}
+.curso-capa img { width: 100%; height: 100%; object-fit: cover; }
+
+.curso-dados { flex: 1; min-width: 0; }
+.curso-titulo { display: block; color: var(--texto); font-size: 1.15rem; font-weight: 700; text-decoration: none; }
+.curso-titulo:hover { color: var(--primaria-escura); }
+.curso-sub { margin: 4px 0 6px; font-size: .85rem; color: var(--muda); }
+.curso-desc {
+  margin-bottom: 10px; font-size: .88rem; line-height: 1.5; color: var(--muda);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.curso-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.status { display: inline-block; padding: 3px 12px; border-radius: 999px; font-size: .75rem; font-weight: 700; }
+.status-nao-iniciado { background: rgba(100,116,139,.12); color: var(--muda); }
+.status-andamento { background: var(--primaria-clara); color: var(--primaria-escura); }
+.status-concluido { background: var(--grad); color: #04210f; }
+
+.curso-acao { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.curso-acao .btn { white-space: nowrap; text-decoration: none; }
+
+.progresso { position: relative; width: 180px; height: 20px; overflow: hidden; background: rgba(100,116,139,.15); border-radius: 999px; }
+.progresso-barra { position: absolute; inset: 0 auto 0 0; background: var(--grad); border-radius: 999px; transition: width .4s; }
+.progresso span { position: relative; display: block; text-align: center; font-size: .72rem; font-weight: 700; line-height: 20px; color: var(--texto); }
+
+/* .btn também usado como link */
+a.btn { display: inline-block; text-decoration: none; }
+
+@media (max-width: 760px) {
+  .curso-linha { flex-wrap: wrap; gap: 14px; }
+  .curso-capa { width: 100%; height: 150px; }
+  .curso-dados { flex-basis: 100%; }
+  .curso-acao { width: 100%; }
+  .progresso { flex: 1; width: auto; min-width: 120px; }
+}
+
+/* ================= CARDS DE CURSO NA PÁGINA INICIAL: progresso e cadeado ================= */
+.curso-card.bloqueado { opacity: .7; }
+.curso-card.bloqueado:hover { transform: none; border-color: var(--borda); box-shadow: var(--sombra); }
+.curso-card-trava {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 4px 12px;
+  background: rgba(100,116,139,.12); color: var(--muda); border-radius: 999px; font-size: .8rem; font-weight: 700;
+}
+.curso-card-trava svg { width: 14px; height: 14px; }
+.curso-card-prog { display: block; height: 6px; margin-top: 18px; background: rgba(100,116,139,.15); border-radius: 999px; overflow: hidden; }
+.curso-card-prog i { display: block; height: 100%; background: var(--grad); border-radius: 999px; }
+.curso-card-pct { display: block; margin-top: 6px; color: var(--muda); font-size: .8rem; font-weight: 600; }
+
+/* cards dos sistemas na página inicial (clicar abre a página de cursos do sistema) */
+.sistema-card { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* botão "Acessar treinamento" no fim de cada card de sistema (o card inteiro continua clicável) */
+.sistema-card p { margin-bottom: 22px; }
+.curso-card-botao {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: auto; align-self: flex-start;
+  padding: 14px 30px; background: var(--grad); color: #04210f; border-radius: 999px; font-size: 1.05rem; font-weight: 700;
+  box-shadow: 0 4px 14px rgba(30,230,81,.28); transition: .2s;
+}
+.sistema-card .curso-card-trava { margin-top: auto; align-self: flex-start; }
+.sistema-card:hover .curso-card-botao { box-shadow: 0 8px 20px rgba(30,230,81,.45); }
+.curso-card-botao span { transition: transform .2s; }
+.sistema-card:hover .curso-card-botao span { transform: translateX(3px); }

@@ -1,0 +1,94 @@
+/* ================= LOGIN ================= */
+/* Segue o tema do site: claro (branco + verde) ou escuro (preto + verde), pelas cores do geral.css.
+   ===== PALETA DO DEGRADÊ (troque as cores aqui) =====
+   --login-degrade-1 = esquerda, --login-degrade-2 = meio, --login-degrade-3 = direita. */
+#login-view {
+  --login-degrade-1: #cdeedb;   /* tema claro: verde suave */
+  --login-degrade-2: #eef9f2;
+  --login-degrade-3: #ffffff;   /* branco */
+  position: relative; min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  color: var(--texto); font-family: var(--fonte);
+  background: linear-gradient(100deg, var(--login-degrade-1) 0%, var(--login-degrade-2) 45%, var(--login-degrade-3) 100%);
+}
+body.escuro #login-view {
+  --login-degrade-1: #0a3a22;   /* tema escuro: verde escuro */
+  --login-degrade-2: #0b1f15;
+  --login-degrade-3: #0d1210;   /* mesmo fundo escuro do site */
+}
+#login-view[hidden] { display: none; }
+
+/* botão de tema (canto de cima, à direita) */
+.login-tema {
+  position: absolute; top: 28px; right: 28px; z-index: 2; width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center; padding: 0;
+  background: var(--card); color: var(--muda); border: 1px solid var(--borda); border-radius: 50%;
+  cursor: pointer; transition: .2s;
+}
+.login-tema:hover { color: var(--primaria); border-color: var(--primaria); }
+.login-tema svg { width: 21px; height: 21px; }
+.login-tema .tema-sol { display: none; }
+body.escuro .login-tema .tema-sol { display: block; }
+body.escuro .login-tema .tema-lua { display: none; }
+
+/* lado esquerdo: apresentação (some no celular) */
+.login-lado {
+  display: flex; align-items: center; padding: 56px 64px;
+}
+.login-lado-conteudo { max-width: 620px; }
+.login-lado-logo { width: 300px; max-width: 100%; margin-bottom: 44px; }
+.login-lado h2 { font-size: clamp(2.2rem, 3.2vw, 3.1rem); font-weight: 800; letter-spacing: -1.4px; line-height: 1.1; margin-bottom: 20px; color: var(--texto); }
+.login-lado h2 span { display: block; color: var(--primaria); }
+.login-lado p { max-width: 540px; font-size: 1.15rem; line-height: 1.65; color: var(--muda); margin-bottom: 34px; }
+.login-lado ul { list-style: none; display: grid; gap: 16px; }
+.login-lado li { display: flex; align-items: center; gap: 14px; font-weight: 600; font-size: 1.08rem; color: var(--texto); }
+.login-lado li svg { flex: none; width: 30px; height: 30px; padding: 6px; border-radius: 50%; background: var(--primaria-clara); color: var(--primaria); }
+
+/* lado direito: formulário */
+.login-form-lado { display: flex; justify-content: center; align-items: center; padding: 40px 24px; }
+.login-container {
+  width: 100%; max-width: 460px; text-align: center;
+  background: var(--card); border: 1px solid var(--borda); border-radius: 28px; box-shadow: var(--sombra);
+  padding: 52px 44px 48px;
+}
+#login-view h1 { font-size: 1.15rem; font-weight: 500; color: var(--muda); margin-bottom: 26px; }
+.logo { display: flex; justify-content: center; margin-bottom: 12px; }
+.logo .logo-teks, body.escuro .logo .logo-teks { width: 250px; max-width: 80%; }
+.subtitle { font-size: 1rem; color: var(--muda); margin-bottom: 30px; }
+.input-box { width: 100%; margin-bottom: 14px; position: relative; }
+.input-box input {
+  width: 100%; height: 54px; padding: 0 20px; background: var(--campo); color: var(--texto);
+  border: 1.5px solid var(--borda); border-radius: 999px; outline: none; font-size: 1rem; transition: .2s;
+}
+.input-box input::placeholder { color: #9aa8a1; }
+.input-box input:focus { border-color: var(--primaria); box-shadow: 0 0 0 4px rgba(30,230,81,.18); }
+.password-box input { padding-right: 52px; }
+#toggle-password {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center; padding: 0;
+  background: none; border: none; border-radius: 50%; color: var(--muda); cursor: pointer; transition: .2s;
+}
+#toggle-password:hover { color: var(--primaria); background: var(--primaria-clara); }
+#toggle-password svg { width: 21px; height: 21px; }
+#toggle-password .olho-fechado, #toggle-password.mostrando .olho-aberto { display: none; }
+#toggle-password.mostrando .olho-fechado { display: block; }
+.login-button {
+  width: 100%; height: 54px; margin-top: 8px; border: none; border-radius: 999px;
+  background: var(--grad); color: #04210f; font-size: 1rem; font-weight: 700; letter-spacing: .3px;
+  cursor: pointer; transition: .2s;
+}
+.login-button:hover { transform: translateY(-1px); box-shadow: var(--sombra-forte); }
+.login-button:disabled { opacity: .6; cursor: wait; transform: none; }
+.register { margin-top: 24px; font-size: .95rem; color: var(--muda); }
+.register a { color: var(--primaria); text-decoration: none; font-weight: 700; }
+.register a:hover { text-decoration: underline; }
+.login-error { color: var(--erro); font-size: .88rem; margin: 4px 0 8px; }
+.login-error.ok { color: var(--primaria); }
+
+/* celular: só o formulário */
+@media (max-width: 900px) {
+  #login-view { grid-template-columns: 1fr; padding: 0; }
+  .login-lado { display: none; }
+  .login-form-lado { min-height: 100vh; padding: 20px; }
+  .login-container { padding: 44px 28px 40px; }
+  .login-tema { top: 16px; right: 16px; }
+}

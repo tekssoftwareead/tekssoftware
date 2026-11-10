@@ -1,0 +1,7 @@
+/* ================= ARTIGOS E YOUTUBE ================= */
+.lista-simples { max-width: 860px; margin: 0 auto; }
+.lista-simples .aula-item { margin-bottom: 10px; }
+.artigo-texto { max-width: 760px; font-size: 1.05rem; }
+.artigo-texto p { line-height: 1.8; margin-bottom: 18px; color: var(--texto); }
+.yt { position: relative; padding-top: 56.25%; background: #000; border-radius: var(--raio); overflow: hidden; box-shadow: var(--sombra); }
+.yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }

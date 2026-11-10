@@ -1,0 +1,12 @@
+/* ================= BUSCA GLOBAL ================= */
+.grid[hidden], .resultados[hidden] { display: none; }
+.resultados { max-width: 860px; margin: 0 auto; }
+.res-titulo { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muda); margin: 28px 0 10px; }
+.res-item {
+  display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; padding: 14px 20px; background: var(--card);
+  border: 1px solid var(--borda); border-radius: 12px; color: var(--texto); text-decoration: none; font-weight: 600; transition: .2s;
+}
+.res-item small { font-weight: 400; color: var(--muda); }
+.res-item:hover { transform: translateX(4px); border-color: var(--primaria); box-shadow: var(--sombra); }
+mark { background: rgba(30,230,81,.3); color: inherit; border-radius: 3px; padding: 0 2px; }
+body.contrast #home-view mark { background: #000; color: #fff; }

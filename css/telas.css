@@ -1,0 +1,133 @@
+/* ================= CURSOS, CURSO, AULA ================= */
+.filtros { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
+.chip {
+  display: inline-block; padding: 8px 18px; background: var(--campo); border: 1.5px solid var(--borda); border-radius: 999px;
+  color: var(--muda); font-size: .9rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: .2s;
+}
+.chip:hover { border-color: var(--primaria); color: var(--primaria-escura); }
+.chip.ativo { background: var(--grad); border-color: transparent; color: #fff; }
+.card-curso {
+  display: flex; flex-direction: column; overflow: hidden; background: var(--card); border: 1px solid var(--borda);
+  border-radius: var(--raio); box-shadow: var(--sombra); color: var(--texto); text-decoration: none; transition: .2s;
+}
+.card-curso:hover { transform: translateY(-4px); border-color: var(--primaria); box-shadow: var(--sombra-forte); }
+.capa {
+  height: 150px; display: flex; align-items: center; justify-content: center;
+  background: var(--grad); color: #fff; font-size: 3rem; font-weight: 800;
+}
+.capa img { width: 100%; height: 100%; object-fit: cover; }
+.info { padding: 18px 20px 22px; }
+.tag {
+  display: inline-block; margin-bottom: 10px; padding: 3px 12px; background: var(--primaria-clara);
+  color: var(--primaria-escura); border-radius: 999px; font-size: .75rem; font-weight: 700;
+}
+.info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+.info p { font-size: .88rem; color: var(--muda); line-height: 1.55; }
+.pagina { max-width: 860px; margin: 0 auto; padding-top: 44px; }
+.pagina h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -.8px; margin: 18px 0 10px; }
+.voltar { color: var(--primaria); text-decoration: none; font-weight: 600; font-size: .95rem; }
+.voltar:hover { text-decoration: underline; }
+.descricao { line-height: 1.7; color: var(--muda); margin-bottom: 30px; }
+.modulo { margin-bottom: 30px; }
+.modulo h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid var(--primaria-clara); }
+.aula-item {
+  display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; padding: 15px 20px; background: var(--card);
+  border: 1px solid var(--borda); border-radius: 12px; color: var(--texto); text-decoration: none; font-weight: 600; transition: .2s;
+}
+.aula-item small { font-weight: 400; color: var(--muda); }
+.aula-item:hover { transform: translateX(4px); border-color: var(--primaria); box-shadow: var(--sombra); }
+.video { margin: 20px 0 24px; background: #000; border-radius: var(--raio); overflow: hidden; box-shadow: var(--sombra); }
+.video video { display: block; width: 100%; }
+.material {
+  display: inline-block; margin-bottom: 24px; padding: 11px 20px; background: var(--primaria-clara);
+  border-radius: 10px; color: var(--primaria-escura); text-decoration: none; font-weight: 700;
+}
+.material:hover { background: var(--primaria-clara); }
+.aula-nav { display: flex; justify-content: space-between; gap: 12px; }
+.aula-nav a {
+  padding: 11px 20px; background: var(--campo); border: 1.5px solid var(--borda); border-radius: 10px;
+  color: var(--texto); text-decoration: none; font-weight: 600; transition: .2s;
+}
+.aula-nav a:hover { border-color: var(--primaria); color: var(--primaria-escura); }
+@media (max-width: 640px) { .pagina { padding-top: 24px; } .pagina h1 { font-size: 1.6rem; } }
+
+/* ================= QUEM SOMOS (seção da página inicial) ================= */
+.quem-secao { position: relative; isolation: isolate; margin-top: 70px; padding: 90px 0 90px; scroll-margin-top: 110px; }
+body { overflow-x: clip; }
+#view-home:has(#resultados:not([hidden]), #empty:not([hidden])) :is(.quem-secao, .cursos-secao) { display: none; }
+/* quadro (moldura verde fina) com título, subtítulo e as 4 caixinhas à esquerda; a foto à direita acompanha a altura do quadro */
+.quem-topo {
+  max-width: 1280px; margin: 0 auto; display: flex; align-items: stretch; gap: 34px; padding: 20px;
+  background: var(--card); border: 1px solid rgba(30,230,81,.25); border-radius: 28px;
+  box-shadow: 0 18px 50px rgba(15,23,42,.08), 0 0 36px rgba(30,230,81,.05);
+}
+.quem-conteudo { order: 1; flex: 1; min-width: 0; padding: 8px 4px 8px 14px; }
+.quem-foto {
+  order: 2; flex: none; width: 420px; margin: 0; display: flex; border: 3px solid rgba(30,230,81,.5); border-radius: 22px; overflow: hidden;
+  background: var(--primaria-clara); box-shadow: 0 0 16px rgba(30,230,81,.12);
+}
+.quem-foto img:not([src]) { visibility: hidden; }
+/* a foto não define a altura do quadro: ela se ajusta à altura do texto */
+.quem-foto { position: relative; }
+.quem-foto img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.quem-titulo { font-size: 2.5rem; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; margin-bottom: 14px; color: var(--texto); }
+.quem-texto p { font-size: 1.05rem; line-height: 1.6; color: var(--muda); text-align: left; margin-bottom: 18px; }
+/* sem foto: só o quadro */
+.quem-topo:has(.quem-foto[hidden]) { max-width: 640px; }
+/* mini caixinhas empilhadas (ícone + título + texto) */
+.quem-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.card-q {
+  display: grid; grid-template-columns: 42px 1fr; column-gap: 14px; align-items: start;
+  padding: 12px 14px; background: rgba(100,116,139,.08); border-radius: 16px; transition: .2s;
+}
+.card-q:hover { background: rgba(30,230,81,.1); }
+.card-q-icone {
+  grid-row: 1 / 3; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+  background: rgba(30,230,81,.14); color: var(--primaria); border-radius: 13px; box-shadow: 0 0 16px rgba(30,230,81,.28);
+}
+.card-q-icone svg { width: 22px; height: 22px; }
+.card-q h3 { font-size: .96rem; font-weight: 700; margin-bottom: 3px; }
+.card-q p { line-height: 1.5; color: var(--muda); font-size: .86rem; text-align: justify; }
+@media (max-width: 700px) {
+  .quem-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 1100px) {
+  .quem-secao { padding: 70px 0 60px; margin-top: 50px; }
+  .quem-topo { flex-direction: column; gap: 22px; padding: 14px; }
+  .quem-conteudo { order: 2; padding: 6px 4px 10px; }
+  .quem-foto { order: 1; width: 100%; max-width: 440px; margin: 0 auto; }
+  .quem-foto { height: 340px; }
+  .quem-titulo { font-size: 1.8rem; }
+}
+
+/* ================= CURSOS NA PÁGINA INICIAL ================= */
+.cursos-secao { max-width: 1240px; margin: 0 auto; padding-top: 56px; }
+.secao-titulo { text-align: center; font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 30px; }
+.cursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
+/* um curso sozinho não estica a largura toda */
+.cursos-grid:has(.curso-card:only-child) { grid-template-columns: minmax(290px, 420px); justify-content: center; }
+.curso-card {
+  display: block; padding: 32px 30px 34px; background: var(--card); border: 1px solid var(--borda);
+  border-radius: 28px; box-shadow: var(--sombra); color: var(--texto); text-decoration: none; transition: .2s;
+}
+.curso-card:hover { transform: translateY(-4px); border-color: var(--primaria); box-shadow: var(--sombra-forte); }
+.curso-card-icone {
+  width: 64px; height: 64px; margin-bottom: 22px; display: flex; align-items: center; justify-content: center;
+  background: var(--grad); color: #04210f; border-radius: 20px; overflow: hidden;
+}
+.curso-card-icone svg { width: 34px; height: 34px; }
+.curso-card-icone img { width: 100%; height: 100%; object-fit: cover; }
+.curso-card h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -.4px; margin-bottom: 12px; }
+.curso-card p {
+  line-height: 1.7; color: var(--muda); font-size: 1rem;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ver-todos { text-align: center; margin-top: 28px; }
+.ver-todos a { color: var(--primaria-escura); font-weight: 700; text-decoration: none; }
+.ver-todos a:hover { text-decoration: underline; }
+@media (max-width: 760px) {
+  .cursos-secao { padding-top: 36px; }
+  .secao-titulo { font-size: 1.8rem; }
+  .cursos-grid { grid-template-columns: 1fr; gap: 18px; }
+  .curso-card { min-height: 0; padding: 30px 26px 32px; }
+}

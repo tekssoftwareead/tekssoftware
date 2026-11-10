@@ -1,0 +1,124 @@
+/* ================= TELA INICIAL ================= */
+#home-view {
+  min-height: 100vh; background: var(--fundo); color: var(--texto); font-family: var(--fonte); font-size: 16px;
+  padding: env(safe-area-inset-top, 0px) 0 0;
+}
+/* o "cartão" branco com cantos de cima arredondados */
+.shell {
+  position: relative; min-height: 100vh; background: var(--fundo);
+  border-radius: 0; padding: 18px 18px 0; overflow: hidden;
+}
+/* topo: pílula (branca no tema claro, preta no escuro) */
+.header {
+  position: sticky; top: 14px; z-index: 20; max-width: 1200px; margin: 0 auto;
+  padding: 16px 30px; background: var(--barra-bg); border: 1px solid var(--barra-borda);
+  border-radius: 999px; box-shadow: 0 10px 30px rgba(15,23,42,.12);
+}
+.nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.nav-lado { display: flex; align-items: center; gap: 6px; }
+.nav-dir { justify-content: flex-end; }
+.acoes { display: flex; align-items: center; gap: 2px; margin-left: 6px; }
+.nav a:not(.marca) {
+  color: var(--barra-texto); text-decoration: none; font-weight: 600; font-size: 1.08rem;
+  padding: 11px 22px; border-radius: 999px; transition: .2s;
+}
+.nav a:not(.marca):hover { background: var(--barra-hover); }
+.nav a.active { background: var(--grad); color: #04210f; }
+/* computador: em vez da pílula, uma linha verde marca a opção; ela desliza de uma opção para outra (veja linhaDoMenu em js/componentes/menu.js) */
+.nav-dir { position: relative; }
+.nav-linha { display: none; }
+@media (min-width: 641px) {
+  .nav a:not(.marca) { padding: 11px 18px; }
+  .nav a:not(.marca):hover { background: none; }
+  .nav a.active { background: none; color: var(--barra-texto); }
+  .nav-linha {
+    display: block; position: absolute; left: 0; top: 0; width: 0; height: 3px; border-radius: 3px; background: var(--grad);
+    opacity: 0; pointer-events: none; transition: left .3s ease, width .3s ease, opacity .2s ease;
+  }
+}
+}
+.nav .icon-btn { color: var(--barra-texto); }
+.nav .icon-btn:hover { background: var(--barra-hover); color: var(--primaria); }
+.marca { display: flex; align-items: center; margin: 0 22px 0 0; padding: 6px 18px; background: var(--marca-bg); border-radius: 999px; text-decoration: none; }
+.marca .logo-teks { height: 40px; width: calc(40px * var(--logo-prop, 6.956)); }
+.marca-esq { justify-self: start; }
+.marca-mobile { display: none; margin: 0; padding: 5px 14px; }
+.icon-btn {
+  width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;
+  background: none; border: none; border-radius: 50%; color: var(--muda); cursor: pointer; transition: .2s;
+}
+.icon-btn svg { width: 26px; height: 26px; }
+.menu-btn { display: none; color: var(--barra-texto); }
+.menu-btn:hover { background: var(--barra-hover); }
+/* conteúdo */
+main { max-width: 1100px; margin: 0 auto; padding: 0 40px 80px; }
+#view-home { max-width: 1400px; }
+.hero { padding: 60px 0 40px; text-align: center; }
+/* título logo no alto; os Cursos vêm colados embaixo */
+#view-home .hero { min-height: 0; display: block; padding: 12vh 0 0; }
+/* quando há resultados de pesquisa, o título sobe para dar espaço a eles */
+#view-home:has(#resultados:not([hidden]), #empty:not([hidden])) .hero { min-height: 0; display: block; padding: 60px 0 28px; }
+.hero h1 {
+  text-wrap: balance; font-size: 3.4rem; font-weight: 800; letter-spacing: -2px; line-height: 1.08; color: var(--texto); margin-bottom: 14px;
+}
+.hero h1 .verde { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lema { font-size: 1.15rem; font-weight: 500; color: var(--muda); margin-bottom: 0; }
+.search { max-width: 620px; margin: 0 auto; }
+.search input {
+  width: 100%; height: 60px; padding: 0 28px; background: var(--campo); color: var(--texto);
+  border: 2px solid var(--texto); border-radius: 999px; outline: none; font-size: 1rem; font-weight: 500; transition: .2s;
+}
+.search input::placeholder { color: #94a3b8; }
+.search input:focus { border-color: var(--primaria); box-shadow: 0 0 0 5px rgba(30,230,81,.2), 0 10px 28px rgba(30,230,81,.22); }
+/* cards */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card {
+  display: flex; align-items: center; justify-content: center; height: 120px; background: var(--card);
+  border: 1px solid var(--borda); border-radius: var(--raio); box-shadow: var(--sombra);
+  color: var(--texto); font-size: 1.15rem; font-weight: 700; text-decoration: none; transition: .2s;
+}
+.card:hover { transform: translateY(-4px); border-color: var(--primaria); box-shadow: var(--sombra-forte); }
+.card[hidden], .empty[hidden] { display: none; }
+.empty { text-align: center; margin-top: 30px; color: var(--muda); font-weight: 500; }
+/* acessibilidade */
+body.big #home-view { font-size: 20px; }
+body.contrast #home-view {
+  --primaria: #006b43; --primaria-escura: #004d30; --primaria-clara: #e0f3ea; --vivo: #fff;
+  --grad: linear-gradient(#006b43, #006b43);
+  --fundo-externo: #000; --fundo: #fff; --card: #fff; --campo: #fff; --texto: #000; --muda: #111; --borda: #000;
+  --barra-bg: #000; --barra-texto: #fff; --barra-borda: #000; --barra-hover: rgba(255,255,255,.18); --marca-bg: #fff;
+}
+body.contrast #home-view .hero h1 .verde { color: #006b43; background: none; -webkit-text-fill-color: #006b43; }
+body.contrast #home-view .nav a.active { color: #fff; }
+/* celular */
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } .hero h1 { font-size: 2.6rem; } }
+@media (max-width: 640px) {
+  #home-view { padding: env(safe-area-inset-top, 0px) 0 0; }
+  .shell { padding: 12px 12px 0; border-radius: 0; }
+  .header { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px 8px 14px; }
+  .marca-mobile { display: flex; }
+  .marca-mobile .logo-teks { height: 28px; width: calc(28px * var(--logo-prop, 6.956)); }
+  .marca-esq { display: none; }
+  main { padding: 0 12px 40px; }
+  .hero { padding: 36px 0 24px; }
+  #view-home .hero { min-height: 0; padding: 8vh 0 0; }
+  #view-home:has(#resultados:not([hidden]), #empty:not([hidden])) .hero { min-height: 0; display: block; padding: 36px 0 20px; }
+  .hero h1 { font-size: 2.1rem; letter-spacing: -1px; }
+  .lema { font-size: 1rem; margin-bottom: 28px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  .menu-btn { display: flex; }
+  .nav {
+    display: none; position: absolute; top: 64px; right: 0; left: 0; z-index: 10;
+    flex-direction: column; align-items: stretch; gap: 4px; padding: 12px;
+    background: var(--barra-bg); border: 1px solid var(--barra-borda); border-radius: 28px; box-shadow: 0 14px 30px rgba(15,23,42,.18);
+  }
+  .nav.open { display: flex; }
+  .nav-lado { flex-direction: column; align-items: stretch; gap: 4px; }
+  .acoes { justify-content: center; margin: 6px 0 0; }
+  .nav a:not(.marca) { padding: 12px 16px; }
+}
+
+/* botão de tema: no claro mostra a lua (clique = escuro); no escuro mostra o sol (clique = claro) */
+#tema .tema-sol { display: none; }
+body.escuro #tema .tema-sol { display: block; }
+body.escuro #tema .tema-lua { display: none; }
