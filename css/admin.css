@@ -447,3 +447,9 @@ body.escuro .adm-validade input { color-scheme: dark; }
 }
 .man-nota { margin-top: 16px; color: var(--muda); font-size: .82rem; line-height: 1.5; }
 @media (max-width: 640px) { .man-envio { padding: 16px; } .man-sistema { width: 100%; } }
+
+/* celular: nome da pessoa inteiro (sem cortar) e o perfil (Cliente, Administrador...) na linha de baixo */
+@media (max-width: 640px) {
+  .adm-usr-id strong { white-space: normal; overflow-wrap: anywhere; }
+  .adm-usr-papel { grid-column: 2 / -1; grid-row: auto; justify-content: flex-start; }
+}

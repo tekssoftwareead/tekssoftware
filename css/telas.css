@@ -131,3 +131,6 @@ body { overflow-x: clip; }
   .cursos-grid { grid-template-columns: 1fr; gap: 18px; }
   .curso-card { min-height: 0; padding: 30px 26px 32px; }
 }
+
+/* celular: texto dos cards do "Quem somos" alinhado à esquerda (justificado abria buracos entre as palavras) */
+@media (max-width: 640px) { .card-q p { text-align: left; } }

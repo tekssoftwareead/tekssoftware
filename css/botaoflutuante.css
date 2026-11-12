@@ -28,3 +28,10 @@
 }
 /* na tela de login não aparece */
 body:has(#home-view[hidden]) .botaoflutuante { display: none; }
+
+@media (max-width: 640px) {
+  /* espaço no fim da página para o botão não cobrir o último item */
+  #view-home, #app { padding-bottom: 84px; }
+  /* no painel admin pelo celular o botão cobria os ícones de editar/excluir */
+  body:has(.adm) .botaoflutuante { display: none; }
+}
