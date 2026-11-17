@@ -1,6 +1,6 @@
 // Janela de pesquisa (do site 1): abre pelo botão "Pesquisa" do menu ou com Ctrl+K (Cmd+K no Mac).
 // Mostra os resultados na hora, enquanto a pessoa digita. Enter abre o primeiro resultado.
-// No fim da lista há um atalho para a pesquisa completa (que também procura nos manuais).
+// No fim da lista há um atalho para a página com todos os resultados.
 import { Auth } from "../nucleo/auth.js";
 import { esc, normTexto } from "../nucleo/helpers.js";
 import { buscarTudo, htmlResultados, totalResultados } from "../busca/busca.js";
@@ -12,12 +12,12 @@ function mostrar(termo) {
   const q = normTexto(t);
 
   if (!q) {
-    box.innerHTML = '<p class="res-vazio">Digite para pesquisar aulas, cursos, artigos e sistemas.</p>';
+    box.innerHTML = '<p class="res-vazio">Digite para pesquisar aulas, cursos e sistemas.</p>';
     return;
   }
 
   const r = buscarTudo(q);
-  const completa = `<a class="pesq-completa" href="#/busca/${encodeURIComponent(t)}">Ver todos os resultados, incluindo os manuais →</a>`;
+  const completa = `<a class="pesq-completa" href="#/busca/${encodeURIComponent(t)}">Ver todos os resultados →</a>`;
 
   box.innerHTML = totalResultados(r)
     ? htmlResultados(r, q.length) + completa
