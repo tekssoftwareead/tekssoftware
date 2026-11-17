@@ -23,13 +23,11 @@ export function iniciarMenu() {
     }
   });
 
-  // Tema claro (branco + verde) / escuro (preto + verde). Lembra a escolha.
-  const aplicarTema = (escuro) => document.body.classList.toggle("escuro", escuro);
-  try { aplicarTema(localStorage.getItem("teks-tema") === "escuro"); } catch (e) {}
+  // Tema claro (branco + verde) / escuro (preto + verde): segue o aparelho sozinho (veja o script logo no começo do index.html).
+  // O botão troca na hora e lembra a escolha até o aparelho mudar de modo.
   document.getElementById("tema").addEventListener("click", () => {
-    const escuro = !document.body.classList.contains("escuro");
-    aplicarTema(escuro);
-    try { localStorage.setItem("teks-tema", escuro ? "escuro" : "claro"); } catch (e) {}
+    if (window.teksTema) window.teksTema.alternar();
+    else document.body.classList.toggle("escuro");
   });
 
   linhaDoMenu();
