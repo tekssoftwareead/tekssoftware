@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
 <title>Teks Software</title>
 <meta name="description" content="Treinamentos do PowerChef, PowerStock e Posto, com aulas em vídeo e suporte pelo WhatsApp.">
 <!-- prévia do link no WhatsApp, Facebook etc. -->
@@ -32,8 +33,38 @@
 <link rel="stylesheet" href="css/cursos.css?v=9">
 <link rel="stylesheet" href="css/aula.css?v=1">
 <link rel="stylesheet" href="css/modal.css?v=1">
+<link rel="stylesheet" href="css/pesquisa.css?v=4">
 </head>
 <body>
+<script>
+// TEMA: segue o aparelho (celular/computador no modo claro = site claro; modo escuro = site escuro).
+// Se a pessoa clicar no botão de tema, vale a escolha dela até o aparelho trocar de modo.
+(function () {
+  var mq = window.matchMedia ? matchMedia("(prefers-color-scheme: dark)") : null;
+  function aplicar(escuro) {
+    document.body.classList.toggle("escuro", escuro);
+    var cor = escuro ? "#0d1210" : "#ffffff";          // mesmas cores de fundo do css/geral.css
+    document.documentElement.style.background = cor;    // fundo atrás das barras do navegador
+    document.documentElement.style.colorScheme = escuro ? "dark" : "light";
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", cor);              // cor da barra do navegador no celular
+  }
+  window.teksTema = {
+    alternar: function () {
+      var escuro = !document.body.classList.contains("escuro");
+      aplicar(escuro);
+      try { localStorage.setItem("teks-tema2", escuro ? "escuro" : "claro"); } catch (e) {}
+    }
+  };
+  var salvo = null;
+  try { localStorage.removeItem("teks-tema"); salvo = localStorage.getItem("teks-tema2"); } catch (e) {}
+  aplicar(salvo ? salvo === "escuro" : !!(mq && mq.matches));
+  if (mq) {
+    var mudou = function (ev) { try { localStorage.removeItem("teks-tema2"); } catch (e) {} aplicar(ev.matches); };
+    if (mq.addEventListener) mq.addEventListener("change", mudou); else if (mq.addListener) mq.addListener(mudou);
+  }
+})();
+</script>
 
 <!-- ================= TELA DE LOGIN ================= -->
 <div id="login-view" hidden>
@@ -83,6 +114,7 @@
       <nav class="nav" id="nav" aria-label="Principal">
         <span class="marca marca-esq" aria-label="Teks Software"><span class="logo-teks" role="img" aria-label="Teks Software"></span></span>
         <div class="nav-lado nav-dir">
+          <button type="button" class="nav-pesquisa" id="abrir-busca" title="Pesquisar (Ctrl+K)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Pesquisa</button>
           <a href="#/" data-secao="home">Página inicial</a>
           <a href="#/cursos" data-secao="cursos">Cursos</a>
           <a href="#/admin" data-secao="admin" data-perfil="admin" hidden>Painel admin</a>
@@ -155,6 +187,19 @@
 
     <main id="app" hidden></main>
 
+    <!-- janela de pesquisa (botão "Pesquisa" do menu ou Ctrl+K) -->
+    <div class="busca-overlay" id="busca-overlay" hidden>
+      <div class="busca-caixa" role="dialog" aria-modal="true" aria-label="Pesquisar">
+        <div class="busca-campo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="pesq-q" type="search" placeholder="Pesquisar aulas, cursos e sistemas..." aria-label="Pesquisar" autocomplete="off">
+          <kbd class="busca-atalho">Esc</kbd>
+          <button type="button" class="icon-btn" id="busca-fechar" aria-label="Fechar pesquisa">✕</button>
+        </div>
+        <div class="busca-resultados" id="pesq-resultados"></div>
+      </div>
+    </div>
+
     </div>
 </div>
 
@@ -167,6 +212,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="config.js"></script>
-<script type="module" src="js/main.js?v=32"></script>
+<script type="module" src="js/main.js?v=34"></script>
 </body>
 </html>
