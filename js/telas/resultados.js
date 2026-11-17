@@ -42,6 +42,9 @@ function assuntoDoManual(texto, ws) {
   return t === t.toUpperCase() ? t.charAt(0) + t.slice(1).toLowerCase() : t.charAt(0).toUpperCase() + t.slice(1);
 }
 
+// Os manuais saíram do site (a função "perguntar-ia" foi apagada do banco). Para voltar a procurar neles, troque para true.
+const BUSCAR_MANUAIS = false;
+
 const cache = new Map(); // manuais já consultados nesta visita
 let seq = 0;             // descarta respostas antigas quando a pessoa continua digitando
 
@@ -69,7 +72,7 @@ export async function viewBusca(q) {
   // só o que tem a palavra no título (nota 0, 1 ou 2); o que só bate na descrição fica de fora
   const locais = [...r.aulas, ...r.cursos, ...r.artigos, ...r.categorias].filter(x => x.nota <= 2);
   let manuais = [];
-  let buscandoManuais = true;
+  let buscandoManuais = BUSCAR_MANUAIS;
   let zap = WHATSAPP_PADRAO();
 
   function lista() {
@@ -110,6 +113,7 @@ export async function viewBusca(q) {
   }
 
   lista();
+  if (!BUSCAR_MANUAIS) return;
 
   // 2) manuais (PDF/Word), pela função do Supabase
   try {
