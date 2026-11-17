@@ -32,9 +32,8 @@ export function iniciarLogin() {
   // botão de tema da tela de login: mesmo tema (e mesma memória) do resto do site
   const temaLogin = document.getElementById("tema-login");
   if (temaLogin) temaLogin.addEventListener("click", () => {
-    const escuro = !document.body.classList.contains("escuro");
-    document.body.classList.toggle("escuro", escuro);
-    try { localStorage.setItem("teks-tema", escuro ? "escuro" : "claro"); } catch (e) {}
+    if (window.teksTema) window.teksTema.alternar();
+    else document.body.classList.toggle("escuro");
   });
 
   togglePassword.addEventListener("click", () => {
