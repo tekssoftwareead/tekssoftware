@@ -51,6 +51,9 @@ export function iniciarPesquisa() {
   if (!overlay) return;
 
   document.getElementById("abrir-busca").addEventListener("click", abrirBusca);
+  // celular: lupa ao lado do botão do menu
+  const buscaCelular = document.getElementById("abrir-busca-celular");
+  if (buscaCelular) buscaCelular.addEventListener("click", abrirBusca);
   document.getElementById("busca-fechar").addEventListener("click", fecharBusca);
   overlay.addEventListener("click", (e) => { if (e.target === overlay) fecharBusca(); });
   box.addEventListener("click", (e) => { if (e.target.closest("a")) fecharBusca(); });
