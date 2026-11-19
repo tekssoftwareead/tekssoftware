@@ -44,3 +44,12 @@ body.escuro .busca-overlay { background: rgba(0,0,0,.65); }
   color: var(--primaria-escura); font-weight: 700; text-decoration: none; text-align: center; transition: .2s;
 }
 .pesq-completa:hover { border-color: var(--primaria); background: var(--primaria-clara); }
+
+/* lupa no topo do celular, ao lado do botão do menu (no computador fica escondida) */
+.busca-celular { display: none; }
+@media (max-width: 640px) {
+  .busca-celular { display: flex; margin-left: auto; margin-right: 2px; color: var(--barra-texto); }
+  .busca-celular:hover { background: var(--barra-hover); }
+  .busca-celular svg { width: 24px; height: 24px; }
+  .nav .nav-pesquisa { display: none; }   /* a pesquisa já fica na lupa, não precisa repetir dentro do menu */
+}
