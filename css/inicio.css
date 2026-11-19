@@ -6,7 +6,8 @@
 /* o "cartão" branco com cantos de cima arredondados */
 .shell {
   position: relative; min-height: 100vh; background: var(--fundo);
-  border-radius: 0; padding: 18px 18px 0; overflow: hidden;
+  border-radius: 0; padding: 18px 18px 0;
+  overflow: clip;   /* "clip" (e não "hidden") deixa o menu do topo acompanhar a tela ao descer */
 }
 /* topo: pílula (branca no tema claro, preta no escuro) */
 .header {
