@@ -33,7 +33,17 @@
 <link rel="stylesheet" href="css/cursos.css?v=9">
 <link rel="stylesheet" href="css/aula.css?v=1">
 <link rel="stylesheet" href="css/modal.css?v=1">
-<link rel="stylesheet" href="css/pesquisa.css?v=5">
+<link rel="stylesheet" href="css/pesquisa.css?v=4">
+<style>
+  /* lupa de pesquisa no topo SÓ no celular, ao lado do botão do menu (☰). No computador fica escondida. */
+  .header .busca-celular { display: none; }
+  @media (max-width: 640px) {
+    .header .busca-celular { display: flex; margin-left: auto; margin-right: 2px; color: var(--barra-texto); }
+    .header .busca-celular:hover { background: var(--barra-hover); }
+    .header .busca-celular svg { width: 24px; height: 24px; }
+    .header .nav .nav-pesquisa { display: none; }   /* no celular a pesquisa sai de dentro do menu */
+  }
+</style>
 </head>
 <body>
 <script>
@@ -127,7 +137,7 @@
           </div>
         </div>
       </nav>
-      <button type="button" class="icon-btn busca-celular" id="abrir-busca-celular" aria-label="Pesquisar" title="Pesquisar">
+      <button type="button" class="icon-btn busca-celular" id="abrir-busca-celular" aria-label="Pesquisar" title="Pesquisar" onclick="document.getElementById('abrir-busca').click()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       </button>
       <button class="icon-btn menu-btn" id="menu" aria-label="Abrir menu" aria-expanded="false">
