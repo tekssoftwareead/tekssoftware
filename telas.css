@@ -131,3 +131,13 @@ body { overflow-x: clip; }
   .cursos-grid { grid-template-columns: 1fr; gap: 18px; }
   .curso-card { min-height: 0; padding: 30px 26px 32px; }
 }
+
+/* ================= AJUSTE: caixinhas do Quem somos sem espaço esticado entre as palavras ================= */
+/* texto sempre alinhado à esquerda, sem esticar os espaços */
+.quem-grid .card-q p {
+  text-align: left;
+  text-align-last: left;
+  text-justify: none;
+  word-spacing: normal;
+  hyphens: none;
+}
